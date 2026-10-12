@@ -1,0 +1,145 @@
+@import 'tailwindcss';
+
+/*
+ * Clinical workstation theme.
+ * Colour carries meaning only: primary = action/selection, green = within range,
+ * amber = attention, red = critical. Everything else is neutral.
+ */
+@theme {
+  /* Neutrals — same palette as the patient app (kalyhealth/lib/core/theme) */
+  --color-canvas: #f2f3f7;
+  --color-surface: #ffffff;
+  --color-subtle: #f6f7fa;
+  --color-hover: #eef1f6;
+  /* Top bar: white, like the app headers */
+  --color-chrome: #ffffff;
+  --color-chrome-2: #f2f3f7;
+  --color-chrome-ink: #555b66;
+
+  --color-ink: #14161c;
+  --color-ink-2: #555b66;
+  --color-ink-3: #8a909b;
+  --color-ink-4: #b4b9c2;
+  --color-line: #e4e7ec;
+  --color-line-light: #eef0f4;
+
+  /* Action — royal blue */
+  --color-primary: #3b78f2;
+  --color-primary-light: #6e9bf7;
+  --color-primary-dark: #1f55c8;
+  --color-primary-soft: #eaf1fe;
+
+  /* MyAfia identity accents */
+  --color-brand-cyan: #38b6c8;
+  --color-brand-lime: #a4c92f;
+  --color-brand-green: #1eaa52;
+
+  /* Category accents (icon colour only) */
+  --color-accent-rose: #e5484d;
+  --color-accent-amber: #f2a100;
+  --color-accent-violet: #7a5af8;
+  --color-accent-teal: #12a4b5;
+
+  /* Clinical status */
+  --color-success: #16a06a;
+  --color-success-soft: #e6f6ee;
+  --color-warning: #a15c00;
+  --color-warning-soft: #fbf0dc;
+  --color-danger: #d92d20;
+  --color-danger-soft: #fdecea;
+  --color-info: #3b78f2;
+  --color-info-soft: #eaf1fe;
+
+  /* Aliases kept for shared components */
+  --color-bg: #f2f3f7;
+  --color-cream: #f2f3f7;
+  --color-card: #edeff4;
+  --color-card-light: #f8f9fb;
+  --color-olive: #16a06a;
+  --color-olive-light: #2dbb82;
+  --color-olive-soft: #e6f6ee;
+  --color-olive-text: #0e7a50;
+  --color-mint: #e6f6ee;
+  --color-night: #14161c;
+  --color-night-2: #1e2934;
+  --color-night-3: #2c3946;
+  --color-night-ink: #eef2f5;
+  --color-night-ink-2: #9aa6b2;
+  --color-peach: #eaf1fe;
+  --color-peach-ink: #1f55c8;
+  --color-sage: #e6f6ee;
+  --color-sage-ink: #0e7a50;
+  --color-sand: #edeff4;
+  --color-sand-ink: #405967;
+
+  --font-sans: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-display: 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
+
+  /* Large, soft radii like the app (cards 20px, controls pill) */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 18px;
+  --radius-xl: 20px;
+  --radius-2xl: 24px;
+  --radius-3xl: 28px;
+
+  --shadow-soft: 0 6px 20px rgb(15 27 51 / 0.06);
+}
+
+html {
+  font-size: 15px;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  background: var(--color-canvas);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  font-feature-settings: 'tnum' 1;
+  -webkit-font-smoothing: antialiased;
+}
+
+.scroll-thin {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-line) transparent;
+}
+
+/* New value highlight in the flowsheet */
+@keyframes flash-in {
+  0% {
+    background-color: rgb(59 120 242 / 0.14);
+  }
+  100% {
+    background-color: transparent;
+  }
+}
+.flash-in {
+  animation: flash-in 1.6s ease-out;
+}
+
+@keyframes pulse-ring {
+  0% {
+    box-shadow: 0 0 0 0 rgb(59 120 242 / 0.45);
+  }
+  100% {
+    box-shadow: 0 0 0 10px rgb(59 120 242 / 0);
+  }
+}
+.pulse-ring {
+  animation: pulse-ring 1.8s ease-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flash-in,
+  .pulse-ring,
+  .animate-pulse,
+  .animate-ping,
+  .animate-bounce {
+    animation: none !important;
+  }
+}
